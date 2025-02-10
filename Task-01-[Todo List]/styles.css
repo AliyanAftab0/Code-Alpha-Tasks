@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+:root {
+  --primary-color: #854dff;
+  --text-color: #151515;
+  --background-color: #f0f0f0;
+  --card-background: #ffffff;
+  --input-border: #dcdcdc;
+  --input-active: #854dff;
+  --delete-color: #d6d6d6;
+  --complete-color: #d6d6d6;
+  --tab-inactive: #e0e0e0;
+  --error-color: #ff5757;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding-left: 240px;
+  padding-right: 240px;
+  height: 100%;
+  padding: 20px;
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 50%; /* Form takes 50% width */
+  height: 100%;
+}
+
+.todos-section {
+  background-color: var(--primary-color);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 2rem;
+  color: var(--card-background);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%; /* To-Do section takes 50% width */
+  height: 100%; /* Full height */
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.form-section {
+  flex: 1;
+  padding: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#taskInput {
+  padding: 12px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--input-active);
+}
+
+.add-btn {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: var(--card-background);
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.add-btn:hover {
+  background-color: #7140e0;
+}
+
+.add-btn:active {
+  transform: scale(0.98);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-top: 16px;
+  text-align: center;
+  height: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  flex-grow: 1;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--card-background);
+  opacity: 0.7;
+}
+
+.tab-btn.active {
+  opacity: 1;
+  border-bottom: 2px solid var(--card-background);
+}
+
+.task-list {
+  list-style-type: none;
+  width: 100%;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateX(4px);
+}
+
+.task-text {
+  flex-grow: 1;
+  margin-right: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.complete-btn,
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.complete-btn:hover,
+.delete-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.complete-btn svg,
+.delete-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--card-background);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+}
+
+/* Responsive Design for Small Screens (<768px) */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .card,
+  .todos-section {
+    width: 100%;
+    height: auto;
+    position: static; /* Reset absolute positioning */
+    border-radius: 24px; /* Reset border radius */
+    margin-bottom: 20px; /* Add spacing between sections */
+  }
+
+  .todos-section {
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    padding: 1rem 0;
+  }
+
+  .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
